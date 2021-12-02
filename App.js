@@ -6,7 +6,7 @@ import Constants  from 'expo-constants';
 
 
 export default function App() {
-
+  const [title, setTitle] = useState('Título: ');
   const [message, setMessage] = useState('Olá, como você está?');
   const [contact, setContact] = useState('15991914451');
 
@@ -42,12 +42,14 @@ export default function App() {
           <Text style={styles.instructions}> • Digite uma mensagem no campo de texto.</Text>
           <Text style={styles.instructions}> • Depois coloque um número de contato.</Text>
           <Text style={styles.instructions}> • Finalmente clique no botão verde para enviar a mensagem.</Text>
+
+          <TextInput placeholder='Digite uma título' style={styles.input} onChangeText={(text) => setTitle(text)}/>
           
           <TextInput placeholder='Digite uma mensagem' style={styles.input} onChangeText={(text) => setMessage(text)}/>
           
           <TextInput keyboardType='number-pad' placeholder='(15)9999-9999' style={styles.input} onChangeText={(text) => setContact(text)}/>
           
-          <TouchableOpacity onPress={()=> sendMessage(message + current_date_time, contact)} style={styles.button}>
+          <TouchableOpacity onPress={()=> sendMessage('Título: ' + title + '\n' + message + current_date_time, contact)} style={styles.button}>
             <Image source={image} style={styles.image}></Image>
           </TouchableOpacity>
           
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: 'center',
     width: '90%',
-    height: 450,
+    height: 490,
     backgroundColor: '#FFFFFF',
     justifyContent: 'center',
   },
