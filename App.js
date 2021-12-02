@@ -10,6 +10,10 @@ export default function App() {
   const [message, setMessage] = useState('Olá, como você está?');
   const [contact, setContact] = useState('15991914451');
 
+  const d = new Date();
+  var current_date_time = ' ' + d.getDay() + '/' + d.getMonth() + '/' + d.getFullYear() + '-' + d.getHours() + ':' + d.getMinutes();
+  console.log(current_date_time.toLocaleUpperCase());  
+
   function sendMessage (message,phone) {
     var phone_formated = '55' + phone
 
@@ -43,7 +47,7 @@ export default function App() {
           
           <TextInput keyboardType='number-pad' placeholder='(15)9999-9999' style={styles.input} onChangeText={(text) => setContact(text)}/>
           
-          <TouchableOpacity onPress={()=> sendMessage(message,contact)} style={styles.button}>
+          <TouchableOpacity onPress={()=> sendMessage(message + current_date_time, contact)} style={styles.button}>
             <Image source={image} style={styles.image}></Image>
           </TouchableOpacity>
           
